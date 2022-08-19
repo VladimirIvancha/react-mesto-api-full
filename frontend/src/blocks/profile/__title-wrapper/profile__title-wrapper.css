@@ -1,0 +1,5 @@
+.profile__title-wrapper {
+  display: flex;
+  min-width: 286px;
+  max-width: 100%;
+}

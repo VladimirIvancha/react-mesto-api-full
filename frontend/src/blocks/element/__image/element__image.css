@@ -1,0 +1,18 @@
+.element__image {
+  height: 282px;
+  width: 282px;
+  object-fit: cover;
+}
+@media screen and (min-width: 580px) {
+  .element__image {
+    width: 262px;
+  }
+}
+@media screen and (min-width: 880px) {
+  .element__image {
+    width: 282px;
+  }
+}
+.element__image:hover {
+  cursor: pointer;
+}

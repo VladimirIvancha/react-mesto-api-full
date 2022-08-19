@@ -1,0 +1,28 @@
+.loginregform__input {
+  margin-top: 30px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  background-color: transparent;
+  width: 358px;
+  font-weight: 500;
+  line-height: 17px;
+  font-size: 14px;
+  color: #fff;
+  padding: 0;
+  padding-bottom: 9px;
+}
+
+.loginregform__input:focus {
+  outline: none;
+}
+
+.loginregform__input::placeholder {
+  color: #ccc;
+  font-weight: 400;
+}
+
+@media (max-width: 540px) {
+  .loginregform__input {
+    width: 260px;
+  }
+}

@@ -1,0 +1,7 @@
+.popup__save-info_inactive {
+  color: #B8B8B8;
+  background: #FFFFFF;
+  border: 1px solid #B8B8B8;
+  pointer-events: none;
+  user-select: none;
+}

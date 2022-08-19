@@ -1,0 +1,22 @@
+.popup__image-title {
+  max-width: 240px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: #00000000;
+  align-self: flex-start;
+  position: relative;
+  bottom: -10px;
+}
+@media screen and (min-width: 880px) {
+  .popup__image-title {
+    max-width: 433px;
+  }
+}

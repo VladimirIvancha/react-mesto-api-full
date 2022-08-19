@@ -1,0 +1,28 @@
+.popup__close {
+  width: 20px;
+  height: 20px;
+  background-color: #00000000;
+  background-image: url(../../../images/vector-icon-close.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  padding: 0;
+  align-self: flex-end;
+  position: relative;
+  top: -36px;
+  border: black;
+  transition: opacity 0.3s;
+}
+@media screen and (min-width: 880px) {
+  .popup__close {
+    width: 32px;
+    height: 32px;
+    top: -40px;
+    right: -40px;
+    background-size: 32px;
+  }
+}
+.popup__close:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}

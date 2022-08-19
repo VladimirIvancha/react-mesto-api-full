@@ -1,0 +1,19 @@
+.element {
+  display: flex;
+  flex-direction: column;
+  max-width: 282px;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+@media screen and (min-width: 580px) {
+  .element {
+    max-width: 262px;
+  }
+}
+@media screen and (min-width: 880px) {
+  .element {
+    max-width: 282px;
+  }
+}

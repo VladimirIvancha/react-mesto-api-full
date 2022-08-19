@@ -1,0 +1,20 @@
+.header__logo {
+  transition: opacity 0.2s;
+  background-image: url(../../../images/vector-logo-mesto-russia.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 142px;
+  height: 33px;
+}
+
+.header__logo:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 540px) {
+  .header__logo {
+    width: 104px;
+    height: 25px;
+    margin-left: 27px;
+  }
+}

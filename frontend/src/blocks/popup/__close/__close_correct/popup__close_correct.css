@@ -1,0 +1,8 @@
+.popup__close_correct {
+  top: -16px;
+}
+@media screen and (min-width: 880px) {
+  .popup__close_correct {
+    top: -8px;
+  }
+}

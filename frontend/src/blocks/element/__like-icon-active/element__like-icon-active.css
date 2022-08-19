@@ -1,0 +1,5 @@
+.element__like-icon-active {
+  background-image: url(../../../images/vector-icon-heart-black.svg);
+  border: none;
+  background-color: #ffffff;
+}

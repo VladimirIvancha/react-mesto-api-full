@@ -1,0 +1,25 @@
+.loginregform__button {
+  color: #000;
+  width: 358px;
+  height: 50px;
+  font-size: 18px;
+  line-height: 50px;
+  background-color: #fff;
+  margin: 216px auto 15px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: opacity 0.2s;
+  border: none;
+}
+
+.loginregform__button:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 540px) {
+  .loginregform__button {
+    width: 260px;
+    height: 46px;
+  }
+}
