@@ -1,5 +1,5 @@
 import ImagePopup from "./ImagePopup";
-import { useContext, memo } from "react";
+import React, { useContext, memo } from "react";
 import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";

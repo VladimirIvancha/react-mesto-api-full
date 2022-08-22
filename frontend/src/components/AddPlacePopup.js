@@ -1,5 +1,5 @@
 import PopupWithForm from "./PopupWithForm";
-import { useState, useEffect, memo } from "react";
+import React, { useState, useEffect, memo } from "react";
 
 function AddPlacePopup({
   onClose,

@@ -1,4 +1,4 @@
-import { useEffect, memo } from "react";
+import React, { useEffect, memo } from "react";
 
 function ImagePopup({ card, onClose, isOpen }) {
   useEffect(() => {

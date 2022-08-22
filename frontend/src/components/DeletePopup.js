@@ -1,5 +1,5 @@
 import PopupWithForm from "./PopupWithForm";
-import { memo } from "react";
+import React, { memo } from "react";
 
 function DeletePopup({
   onClose,

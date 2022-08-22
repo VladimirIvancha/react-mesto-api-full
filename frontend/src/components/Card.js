@@ -1,4 +1,4 @@
-import { useContext, memo } from "react";
+import React, { useContext, memo } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Card({ card, onCardClick, onCardLike, onTrashClick }) {
