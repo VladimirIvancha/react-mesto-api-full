@@ -1,4 +1,5 @@
 export const BASE_URL = 'https://api.vivanchafrontend.mestoproject.nomoredomains.sbs'
+const handleResponse = response => response.ok ? response.json() : Promise.reject('Ошибка на сервере: ' + response.status + ' - ' + response.statusText)
 
 export const register = (password, email) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -8,9 +9,7 @@ export const register = (password, email) => {
     },
     body: JSON.stringify({password, email})
   })
-  .then(response => response.json())
-  .then(res => res)
-  .catch(err => console.log(err))
+  .then(handleResponse)
 }
 
 export const authorize = (password, email) => {
@@ -21,14 +20,13 @@ export const authorize = (password, email) => {
     },
     body: JSON.stringify({password, email})
   })
-  .then((response => response.json()))
+  .then(handleResponse)
   .then((data) => {
     if (data.token){
       localStorage.setItem('jwt', data.token);
       return data.token;
     } 
   })
-  .catch(err => console.log(err))
 };
 
 export const getCheckToken = (token) => {
@@ -39,7 +37,5 @@ export const getCheckToken = (token) => {
       "Authorization" : `Bearer ${token}`
     }
   })
-  .then((response => response.json()))
-  .then(res => res)
-  .catch(err => console.log(err))
+  .then(handleResponse)
 };
