@@ -1,14 +1,16 @@
-import React, { useContext, memo } from "react";
+import React, { memo } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Card({ card, onCardClick, onCardLike, onTrashClick }) {
-  const currentUser = useContext(CurrentUserContext);
+  const currentUser = React.useContext(CurrentUserContext);
 
-  const isOwn = card.owner._id === currentUser._id;
+  const isOwn = card.owner === currentUser._id;
+
   const isLiked = card.likes.some((i) => i._id === currentUser._id);
-  const cardLikeButtonClassName = `element__like-icon${
-    isLiked ? " element__like-icon-active" : ""
-  }`;
+  const cardLikeButtonClassName = (
+    `element__like-icon ${isLiked ? "element__like-icon-active" : " "}`
+  );
+  
   const cardLikesCount = card.likes.length;
 
   return (

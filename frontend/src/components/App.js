@@ -37,40 +37,32 @@ function App() {
       Promise.all([api.getUserInfo(), api.getInitialCards()])
         .then(([user, cards]) => {
           setCurrentUser(user);
-          setCards(cards);
+          setCards(cards.reverse());
         })
-        .catch((err) => {
-          console.log("Ошибка! Что-то пошло не так!");
-        });
+        .catch((err) => {console.log("Ошибка! Что-то пошло не так!")});
       tokenCheck();
     }
   }, [loggedIn]);
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some(id => id === currentUser._id);
 
-    api
-      .changeLikeCardStatus(card._id, !isLiked)
+    api.changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
-        setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
-        );
+        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
       })
-      .catch((err) => {
-        console.log("Ошибка! Что-то пошло не так!");
+      .catch((err) => {console.log("Ошибка! Что-то пошло не так!");
       });
   }
 
   function handleCardDelete(card) {
     setIsSubmitInLoading(true);
-    api
-      .deleteCard(card._id)
+    api.deleteCard(card._id)
       .then(() => {
-        setCards((state) => state.filter((c) => c._id !== card._id));
+        setCards(cards.filter((item) => item !== card))
         closeAllPopups();
       })
-      .catch((err) => {
-        console.log("Ошибка удаления карточки! Что-то пошло не так");
+      .catch((err) => {console.log("Ошибка удаления карточки! Что-то пошло не так");
       })
       .finally(() => {
         setIsSubmitInLoading(false);
@@ -80,15 +72,13 @@ function App() {
   function handleUpdateUser({ name, about }) {
     setIsSubmitInLoading(true);
     setIsSubmitSuccess(false);
-    api
-      .patchUserInfo({ name, about })
+    api.patchUserInfo({ name, about })
       .then((user) => {
         setCurrentUser(user);
         setIsSubmitSuccess(true);
         closeAllPopups();
       })
-      .catch((err) => {
-        console.log("Ошибка! Что-то пошло не так!");
+      .catch((err) => {console.log("Ошибка! Что-то пошло не так!");
       })
       .finally(() => {
         setIsSubmitInLoading(false);
@@ -98,15 +88,13 @@ function App() {
   function handleUpdateAvatar(avatar) {
     setIsSubmitInLoading(true);
     setIsSubmitSuccess(false);
-    api
-      .patchUserAvatar(avatar)
+    api.patchUserAvatar(avatar)
       .then((user) => {
         setCurrentUser(user);
         setIsSubmitSuccess(true);
         closeAllPopups();
       })
-      .catch((err) => {
-        console.log("Ошибка! Что-то пошло не так!");
+      .catch((err) => {console.log("Ошибка! Что-то пошло не так!");
       })
       .finally(() => {
         setIsSubmitInLoading(false);
@@ -116,15 +104,13 @@ function App() {
   function handleAddPlaceSubmit(card) {
     setIsSubmitInLoading(true);
     setIsSubmitSuccess(false);
-    api
-      .postCard(card)
+    api.postCard(card)
       .then((card) => {
         setCards([card, ...cards]);
         setIsSubmitSuccess(true);
         closeAllPopups();
       })
-      .catch((err) => {
-        console.log("Ошибка! Что-то пошло не так!");
+      .catch((err) => {console.log("Ошибка! Что-то пошло не так!");
       })
       .finally(() => {
         setIsSubmitInLoading(false);
