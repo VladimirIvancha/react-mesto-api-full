@@ -13,8 +13,7 @@ const {
 
 router.get('/', (req, res) => {
   res.status(ok);
-  res.send('Hello World');
-  res.send('Работаем, братья');
+  res.send('Hello World. Работаем, братья');
 });
 
 router.post(

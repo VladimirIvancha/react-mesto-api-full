@@ -44,7 +44,7 @@ app.use((req, res, next) => {
   if (method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
     res.header('Access-Control-Allow-Headers', requestHeaders);
-    return res.status(200).end();
+    return res.end();
   }
   next();
 });
@@ -65,7 +65,7 @@ app.use(router);
 
 app.use(errorLogger);
 
-router.use(errors());
+app.use(errors());
 app.use(handleErrors);
 
 mongoose.connect((NODE_ENV === 'production' ? MONGODB_ADDRESS : 'mongodb://localhost:27017/mestodb'), {
