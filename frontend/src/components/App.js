@@ -41,7 +41,6 @@ function App() {
         })
         .catch((err) => {
           console.log("Ошибка! Что-то пошло не так!");
-          setCurrentUser({ name: "Ошибка!", about: "Ошибка!" });
         });
       tokenCheck();
     }
@@ -175,12 +174,11 @@ function App() {
     const jwt = localStorage.getItem("jwt");
 
     if (jwt) {
-      auth
-        .getCheckToken(jwt)
+      auth.getCheckToken(jwt)
         .then((res) => {
           if (res) {
             setLoggedIn(true);
-            setEmail(res.data.email);
+            setEmail(res.email);
             history.push("/");
           }
         })
@@ -201,11 +199,12 @@ function App() {
   }
 
   function handleAuth(password, email) {
-    auth.authorize(password, email).then((token) => {
+    auth.authorize(password, email)
+    .then((token) => {
       auth.getCheckToken(token)
         .then((res) => {
           setLoggedIn(true);
-          setEmail(res.data.email);
+          setEmail(res.email);
           history.push("/");
         })
         .catch(() => {
@@ -236,12 +235,13 @@ function App() {
             />
           </Route>
           <Route path="/sign-in">
-            <Login onAuth={handleAuth} isOpen={isOpenEditProfile} />
+            <Login 
+            onAuth={handleAuth} 
+            isOpen={isOpenEditProfile} />
           </Route>
           <ProtectedRoute
             loggedIn={loggedIn}
-            exact
-            path="/"
+            exact path="/"
             component={Main}
             onEditProfile={handleEditProfileClick}
             onAddPlace={handleAddPlaceClick}
