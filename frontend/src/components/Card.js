@@ -1,42 +1,42 @@
-import React, { memo } from "react";
+import React from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function Card({ card, onCardClick, onCardLike, onTrashClick }) {
+function Card(props) {
   const currentUser = React.useContext(CurrentUserContext);
 
-  const isOwn = card.owner === currentUser._id;
+  const isOwn = props.card.owner === currentUser._id;
 
-  const isLiked = card.likes.some(id => id === currentUser._id);
+  const isLiked = props.card.likes.some(id => id === currentUser._id);
   const cardLikeButtonClassName = (
     `element__like-icon${isLiked ? " element__like-icon-active" : ""}`
   );
 
-  const cardLikesCount = card.likes.length;
+  const cardLikesCount = props.card.likes.length;
 
   return (
     <article className="element">
       <img
-        src={card.link}
+        src={props.card.link}
         className="element__image"
-        alt={card.name}
-        onClick={() => onCardClick(card)}
+        alt={props.card.name}
+        onClick={() => props.onCardClick(props.card)}
       />
           {isOwn && (
           <button
             type="button"
             aria-label="удалить"
             className="element__delete-button"
-            onClick={() => onTrashClick(card)}
+            onClick={() => props.onTrashClick(props.card)}
           />
           )}
       <div className="element__wrapper">
-        <h2 className="element__title">{card.name}</h2>
+        <h2 className="element__title">{props.card.name}</h2>
         <div className="element__like-wrapper"> 
             <button 
               type="button" 
               aria-label="лайкнуть" 
               className={cardLikeButtonClassName}
-              onClick={() => onCardLike(card)}
+              onClick={() => props.onCardLike(props.card)}
             />
               <span className="element__like-value">
                 {cardLikesCount === 0 ? "" : cardLikesCount}
@@ -47,4 +47,4 @@ function Card({ card, onCardClick, onCardLike, onTrashClick }) {
   );
 }
 
-export default memo(Card);
+export default Card;
