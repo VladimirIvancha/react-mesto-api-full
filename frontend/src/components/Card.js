@@ -6,7 +6,7 @@ function Card(props) {
 
   const isOwn = props.card.owner === currentUser._id;
 
-  const isLiked = props.card.likes.some(id => id === currentUser._id);
+  const isLiked = props.card.likes?.some(id => id === currentUser._id);
   const cardLikeButtonClassName = (
     `element__like-icon${isLiked ? " element__like-icon-active" : ""}`
   );
