@@ -1,42 +1,42 @@
-import React from "react";
+import React, { useContext, memo } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function Card(props) {
-  const currentUser = React.useContext(CurrentUserContext);
+function Card({ card, onCardClick, onCardLike, onTrashClick }) {
+  const currentUser = useContext(CurrentUserContext);
 
-  const isOwn = props.card.owner === currentUser._id;
+  const isOwn = card.owner === currentUser._id;
 
-  const isLiked = props.card.likes.some(id => id === currentUser._id);
+  const isLiked = card.likes.some((i) => i === currentUser._id);
   const cardLikeButtonClassName = (
     `element__like-icon${isLiked ? " element__like-icon-active" : ""}`
   );
 
-  const cardLikesCount = props.card.likes.length;
+  const cardLikesCount = card.likes.length;
 
   return (
     <article className="element">
       <img
-        src={props.card.link}
+        src={card.link}
         className="element__image"
-        alt={props.card.name}
-        onClick={() => props.onCardClick(props.card)}
+        alt={card.name}
+        onClick={() => onCardClick(card)}
       />
           {isOwn && (
           <button
             type="button"
             aria-label="удалить"
             className="element__delete-button"
-            onClick={() => props.onTrashClick(props.card)}
+            onClick={() => onTrashClick(card)}
           />
           )}
       <div className="element__wrapper">
-        <h2 className="element__title">{props.card.name}</h2>
+        <h2 className="element__title">{card.name}</h2>
         <div className="element__like-wrapper"> 
             <button 
               type="button" 
               aria-label="лайкнуть" 
               className={cardLikeButtonClassName}
-              onClick={() => props.onCardLike(props.card)}
+              onClick={() => onCardLike(card)}
             />
               <span className="element__like-value">
                 {cardLikesCount === 0 ? "" : cardLikesCount}
@@ -47,4 +47,4 @@ function Card(props) {
   );
 }
 
-export default Card;
+export default memo(Card);
