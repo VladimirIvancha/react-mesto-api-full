@@ -8,9 +8,9 @@ function Card({ card, onCardClick, onCardLike, onTrashClick }) {
 
   const isLiked = card.likes.some((i) => i._id === currentUser._id);
   const cardLikeButtonClassName = (
-    `element__like-icon ${isLiked ? "element__like-icon-active" : " "}`
+    `element__like-icon ${isLiked ? " element__like-icon-active" : " "}`
   );
-  
+
   const cardLikesCount = card.likes.length;
 
   return (
