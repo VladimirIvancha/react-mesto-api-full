@@ -14,6 +14,7 @@ const {
 router.get('/', (req, res) => {
   res.status(ok);
   res.send('Hello World');
+  res.send(process.env);
 });
 
 router.post(
