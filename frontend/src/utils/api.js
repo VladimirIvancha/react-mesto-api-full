@@ -100,7 +100,7 @@ const getToken = () => {
   
 const api = new Api({
   baseUrl: "https://api.vivanchafrontend.mestoproject.nomoredomains.sbs",
-});
+})
   
 export {api};
   

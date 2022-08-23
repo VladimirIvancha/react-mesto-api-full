@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -12,7 +13,6 @@ const {
   PORT = 3000,
   NODE_ENV,
   MONGODB_ADDRESS,
-  LOCALHOST = 'mongodb://localhost:27017/mestodb',
 } = process.env;
 
 const app = express();
@@ -30,7 +30,6 @@ const allowedCors = [
   'https://vivanchafrontend.mestoproject.nomoredomains.sbs',
   'http://vivanchafrontend.mestoproject.nomoredomains.sbs',
   'http://localhost:3000',
-  'localhost:3000',
 ];
 
 // eslint-disable-next-line consistent-return
@@ -41,7 +40,6 @@ app.use((req, res, next) => {
   const requestHeaders = req.headers['access-control-request-headers'];
   if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
-    res.header('Access-Control-Allow-Credentials', true);
   }
   if (method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
@@ -70,13 +68,11 @@ app.use(errorLogger);
 router.use(errors());
 app.use(handleErrors);
 
-async function main() {
-  await mongoose.connect((NODE_ENV === 'production' ? MONGODB_ADDRESS : LOCALHOST), {
-    useNewUrlParser: true,
-  });
-  app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}`);
-  });
-}
+mongoose.connect((NODE_ENV === 'production' ? MONGODB_ADDRESS : 'mongodb://localhost:27017/mestodb'), {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-main();
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`);
+});

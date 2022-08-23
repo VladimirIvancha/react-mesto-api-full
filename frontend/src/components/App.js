@@ -17,13 +17,7 @@ import unSuccess from "../images/unSuccess.svg";
 
 function App() {
   const history = useHistory();
-
-  const [currentUser, setCurrentUser] = useState({
-    name: "",
-    about: "",
-    avatar: "",
-    id: "",
-  });
+  const [currentUser, setCurrentUser] = useState({});
   const [isOpenEditProfile, setIsOpenEditProfile] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
@@ -32,13 +26,10 @@ function App() {
   const [isSubmitInLoading, setIsSubmitInLoading] = useState(false);
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
   const [selectedCard, setSelectedCard] = useState({ name: " ", link: " " });
-
   const [cards, setCards] = useState([]);
-
   const [email, setEmail] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
-
   const [message, setMessage] = useState({ img: "", text: "" });
 
   useEffect(() => {
@@ -188,8 +179,8 @@ function App() {
         .getCheckToken(jwt)
         .then((res) => {
           if (res) {
-            setEmail(res.data.email);
             setLoggedIn(true);
+            setEmail(res.data.email);
             history.push("/");
           }
         })
@@ -198,29 +189,23 @@ function App() {
   }
 
   function handleRegistration(password, email) {
-    auth
-      .register(password, email)
-      .then((result) => {
-        setEmail(result.data.email);
-        history.push("/sign-in");
-        setMessage({ img: success, text: "Вы успешно зарегистрировались!" });
+    auth.register(password, email)
+      .then((res) => {
+        if (res.statusCode !== 201)
+          setEmail(res.email)
+        history.push('/sign-in')
       })
-      .catch(() =>
-        setMessage({
-          img: unSuccess,
-          text: "Что-то пошло не так! Попробуйте ещё раз.",
-        })
-      )
+      .then(() => setMessage({ img: success, text: 'Вы успешно зарегистрировались!' }))
+      .catch(() => setMessage({img: unSuccess, text: "Что-то пошло не так! Попробуйте ещё раз."}))
       .finally(() => setIsInfoTooltipOpen(true));
   }
 
   function handleAuth(password, email) {
     auth.authorize(password, email).then((token) => {
-      auth
-        .getCheckToken(token)
+      auth.getCheckToken(token)
         .then((res) => {
-          setEmail(res.data.email);
           setLoggedIn(true);
+          setEmail(res.data.email);
           history.push("/");
         })
         .catch(() => {
