@@ -181,7 +181,7 @@ function App() {
       })
       .then(() => setMessage({ img: success, text: 'Вы успешно зарегистрировались!' }))
       .catch(() => setMessage({img: unSuccess, text: "Что-то пошло не так! Попробуйте ещё раз."}))
-      .finally(() => setIsInfoTooltipOpen(true));
+      .finally(() => setIsInfoTooltipOpen(true))
   }
 
   function handleAuth(password, email) {
@@ -193,14 +193,10 @@ function App() {
           setEmail(res.email);
           history.push("/");
         })
-        .catch(() => {
-          setMessage({
-            img: unSuccess,
-            text: "Что-то пошло не так! Попробуйте ещё раз.",
-          });
-          setIsInfoTooltipOpen(true);
-        });
-    });
+    })
+    .then(() => setMessage({ img: success, text: 'Вы успешно вошли!' }))
+    .catch(() => setMessage({ img: unSuccess, text: 'Что-то пошло не так! Попробуйте ещё раз.' }))
+    .finally(() => setIsInfoTooltipOpen(true))
   }
 
   function onSignOut() {
