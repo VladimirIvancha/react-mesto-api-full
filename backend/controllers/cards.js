@@ -35,12 +35,14 @@ module.exports.deleteCard = (req, res, next) => {
   Card.findById(req.params.cardId)
     .orFail(new NotFoundError(NotFoundCardErrMessage))
     .then((card) => {
-      if (`${card.owner}` !== req.user._id) {
+      if (!card.owner.equals(req.user._id)) {
         next(new ForbiddenErr(ForbiddenErrMessage));
+        return;
       }
       Card.findByIdAndRemove(req.params.cardId)
         .then(() => {
-          res.status(ok).send({ message: 'Карточка удалена' });
+          res.status(ok).send({ message: 'Карточка удалена' })
+            .catch(next); // попробую так, а то eslint ругается на return
         });
     })
     .catch((err) => {

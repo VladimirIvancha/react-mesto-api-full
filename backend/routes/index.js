@@ -7,14 +7,12 @@ const { login, createUser } = require('../controllers/users');
 const NotFoundError = require('../errors/NotFoundErr');
 
 const {
-  ok,
   NotFoundPageErrMessage,
 } = require('../constants/errorstatuses');
 
-router.get('/', (req, res) => {
-  res.status(ok);
-  res.send('Hello World. Работаем, братья');
-});
+const {
+  validateURL,
+} = require('../middlewares/validation');
 
 router.post(
   '/signin',
@@ -33,7 +31,7 @@ router.post(
     body: Joi.object().keys({
       name: Joi.string().min(2).max(30),
       about: Joi.string().min(2).max(30),
-      avatar: Joi.string().uri({ scheme: ['http', 'https'] }),
+      avatar: Joi.string().custom(validateURL),
       email: Joi.string().email().required(),
       password: Joi.string().required(),
     }),

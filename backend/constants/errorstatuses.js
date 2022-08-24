@@ -9,6 +9,7 @@ const errorstatuses = {
   UnAuthorizedErrMessage: 'Неверный email или пароль',
   NeedAuthorizeErrMessage: 'Необходима авторизация',
   ForbiddenErrMessage: 'Нельзя удалять карточки других',
+  WrongURLFormatMessage: 'Неправильный формат ссылки',
 };
 
 module.exports = errorstatuses;
