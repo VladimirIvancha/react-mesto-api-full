@@ -41,9 +41,9 @@ module.exports.deleteCard = (req, res, next) => {
       }
       Card.findByIdAndRemove(req.params.cardId)
         .then(() => {
-          res.status(ok).send({ message: 'Карточка удалена' })
-            .catch(next); // попробую так, а то eslint ругается на return
-        });
+          res.status(ok).send({ message: 'Карточка удалена' });
+        })
+        .catch(next);
     })
     .catch((err) => {
       if (err.name === 'CastError') {

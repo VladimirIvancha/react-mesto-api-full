@@ -52,8 +52,7 @@ module.exports.createUser = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestErr(BadReqErrMessage));
-      }
-      if (err.code === 11000) {
+      } else if (err.code === 11000) {
         next(new ConflictErr(ConflictErrMessage));
       } else {
         next(err);
