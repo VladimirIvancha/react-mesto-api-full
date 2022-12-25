@@ -1,5 +1,5 @@
 # Проект: Место API (frontend+backend).
-https://vivanchafrontend.mestoproject.nomoredomains.sbs
+
 ____
 
 ### Описание идеи:
@@ -10,8 +10,7 @@ https://vivanchafrontend.mestoproject.nomoredomains.sbs
 * Backend создан на Express.js. Подключает базу данных на MangoDB для хранения информации о пользователе и размещенных фотографиях. Обрабатывает запросы на регистрацию и авторизацию пользователя, редактирование информации о пользователе (имя, о себе, аватар), добавление и удаление своих фотографий, постановку и отмену фотографиям лайков, валидацию форм, а также обработку ошибок. Сервер для бекенда:
 https://api.vivanchafrontend.mestoproject.nomoredomains.sbs
 * Дополнительный функционал: поднятие сервера на pm2, логирование запросов и ошибок, работа с переменными окружения, выпуск https сертификатов, краш-тест сервера, SSH-доступ другим разработчикам, работа в связке с Nginx, работа с кросс-доменными запросами, выпуск SSL-сертификата.
-* Публичный IP-адрес сервера: 
-51.250.80.58
+
 ### Стек:
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
